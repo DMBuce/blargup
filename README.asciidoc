@@ -1,0 +1,23 @@
+A simple profile-based backup script.
+
+Installation
+------------
+
+Edit the Makefile to your liking and install in the usual way using `make &&
+make install`.
+
+Usage
+-----
+
+Syntax: `blargup 'profile'`
+
+When installed with the default Makefile, profiles are stored under
++/usr/local/etc/blargup+. Example profiles are under the +examples+
+subdirectory.
+
+License
+-------
+
+/////
+vim: set syntax=asciidoc ts=4 sw=4 noet:
+/////

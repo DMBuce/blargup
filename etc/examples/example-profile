@@ -1,0 +1,32 @@
+# example blargup profile
+
+# first, define some variables to use later
+#
+# the only option in this section that blargup directly uses is "systems"
+# the rest are purely for convenience in later sections
+host=asdf.example.com
+systems=(mysql rsync-pull rsync-local)
+#rsync_opts="-az --delete --ignore-errors --exclude-from=$confdir/conf.d/exclude.conf"
+rsync_opts="-avzn --delete --ignore-errors --exclude-from=$confdir/conf.d/exclude.conf"
+
+# mysql options
+mysql_opts="--defaults-extra-file=$confdir/conf.d/my.cnf"
+mysql_destdir="/srv/backup/mysql"
+#mysql_dbs=('my_db1' 'my_db2') # back up specific databases
+#mysql_dbs=('*')  # back up all databases in individual dumps
+#mysql_dbs=('**') # back up all databases in one big combined dump
+mysql_dbs=()
+
+# rsync-pull options
+rsync_pull_user=xfer
+rsync_pull_host=$host
+rsync_pull_srcs=(/home /etc)
+rsync_pull_dest="/srv/backup/$host"
+rsync_pull_opts="$rsync_opts"
+
+# rsync-local options
+rsync_local_srcs=(/home /etc)
+rsync_local_dest="/srv/backup/$HOSTNAME"
+rsync_local_opts="$rsync_opts"
+
+# vim: set ft=sh:

@@ -1,0 +1,36 @@
+#!/bin/bash
+
+prog="@PROG@"
+profile="$1"
+
+confdir="@CONFDIR@"
+
+die() {
+	printf "$1\n"
+	exit 1
+}
+
+if [[ "$profile" == "" ]]; then
+	die "Syntax: $prog <profile>"
+fi
+
+file="$confdir/$profile"
+if [[ -r "$file" ]]; then
+	. "$file"
+else
+	die "Profile $profile does not exist"
+fi
+
+if [[ "${#systems}" == 0 ]]; then
+	die "Undefined \$systems in $file"
+fi
+
+retval=0
+for system in "${systems[@]}"; do
+	if [[ -r "$confdir/systems.d/$system.sh" ]]; then
+		. "$confdir/systems.d/$system.sh"
+	else
+		die "System $system does not exist"
+	fi
+done
+
