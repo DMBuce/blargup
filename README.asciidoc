@@ -15,9 +15,6 @@ When installed with the default Makefile, profiles are stored under
 +/usr/local/etc/blargup+. Example profiles are under the +examples+
 subdirectory.
 
-License
--------
-
 /////
 vim: set syntax=asciidoc ts=4 sw=4 noet:
 /////
