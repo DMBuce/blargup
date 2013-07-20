@@ -65,6 +65,7 @@ clean:
 
 .PHONY: install
 install: all installdirs $(INSTALL_FILES)
+	chmod og-rwx $(DESTDIR)$(CONFDIR)/conf.d/my.cnf
 
 .PHONY: uninstall
 uninstall:
