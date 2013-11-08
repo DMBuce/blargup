@@ -5,9 +5,13 @@
 # the only option in this section that blargup directly uses is "systems"
 # the rest are purely for convenience in later sections
 host=asdf.example.com
-systems=(mysql rsync-pull rsync-local)
+systems=(rotate mysql rsync-pull rsync-local)
 #rsync_opts="-az --delete --ignore-errors --exclude-from=$confdir/conf.d/exclude.conf"
 rsync_opts="-avzn --delete --ignore-errors --exclude-from=$confdir/conf.d/exclude.conf"
+
+# rotate options
+rotate_targets=(/srv/backup/$HOSTNAME /srv/backup/$HOSTNAME.{0..7})
+rotate_type="link"
 
 # mysql options
 mysql_opts="--defaults-extra-file=$confdir/conf.d/my.cnf"
